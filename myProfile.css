@@ -1,0 +1,120 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0; /* Add a background color to contrast the card */
+}
+
+.card {
+  --main-color: #000;
+  --submain-color: #78858f;
+  --bg-color: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  position: relative;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content */
+  border-radius: 0; /* Remove border radius for fullscreen effect */
+  background: var(--bg-color);
+}
+
+.card__wrapper {
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.card__img {
+  height: 50%; /* Adjust height based on your layout */
+  width: 100%; /* Full width of the card */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Ensure content stays within bounds */
+  background: #ccc; /* Optional: Fallback color */
+}
+
+.card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the entire area */
+  border-radius: 0; /* Adjust based on design, e.g., remove for fullscreen */
+}
+
+
+.card__img svg {
+  height: 100%;
+  border-radius: 0; /* Remove top border-radius for fullscreen */
+}
+
+.card__avatar {
+  position: absolute;
+  width: 114px;
+  height: 114px;
+  background: var(--bg-color);
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: calc(50% - 57px);
+}
+
+.card__avatar svg {
+  width: 100px;
+  height: 100px;
+}
+
+.card__title {
+  margin-top: 60px;
+  font-weight: 500;
+  font-size: 24px; /* Increase font size for better visibility */
+  color: var(--main-color);
+}
+
+.card__subtitle {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 18px; /* Adjust for better scaling */
+  color: var(--submain-color);
+}
+
+.card__btn {
+  margin-top: 20px;
+  width: 100px; /* Adjust button width */
+  height: 40px; /* Adjust button height */
+  border: 2px solid var(--main-color);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--main-color);
+  background: var(--bg-color);
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.card__btn-solid {
+  margin-top: 15px;
+  width: 100px;
+  height: 40px;
+  background: var(--main-color);
+  color: var(--bg-color);
+}
+
+.card__btn:hover {
+  background: var(--main-color);
+  color: var(--bg-color);
+}
+
+.card__btn-solid:hover {
+  background: var(--bg-color);
+  color: var(--main-color);
+}

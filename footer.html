@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bookingWokout.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="search.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="body.css"> 
+    <link rel="stylesheet" href="confirmation.css">
+
+
+</head>
+<body>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for workouts..">
+
+    <label class="container">
+        <span class="label-text">Available NOW</span>
+        <input type="checkbox" id="availabilityCheckbox" onchange="selectNenko()">
+        <div class="checkmark"></div>
+    </label>
+
+    <br>
+    <br>
+
+    <ul id="myUL" class="list">
+        <li><a href="#" onclick="selectTraining()">Strength Training</a></li>
+        <li><a href="#" onclick="selectTraining()">Yoga</a></li>
+        <li><a href="#" onclick="selectTraining()">Cardio</a></li>
+        <li><a href="#" onclick="selectTraining()">Pilates</a></li>
+        <li><a href="#" onclick="selectTraining()">Flexibility Training</a></li>
+        <li><a href="#" onclick="selectTraining()">Aerobics</a></li>
+        <li><a href="#" onclick="selectTraining()">Dance</a></li>
+        <li><a href="#" onclick="selectTraining()">Cross Training</a></li>
+        <li><a href="#" onclick="selectTraining()">Balance Training</a></li>
+        <li><a href="#" onclick="selectTraining()">Calisthenics</a></li>
+    </ul>
+    
+
+    <div class="card-client" id="profileCard" style="display: none;">
+        <div class="user-picture">
+            <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+            </svg>
+        </div>
+        <p class="name-client"> Nenad Kuleski
+            <span>Professional Fitness Trainer
+            </span>
+            <br>
+            <span>Strength Training</span>
+            <br>
+            <span><button style="background: white;" onclick="startWorkout()" > Click to start workout </button></span>
+            
+            <button class="back-button" onclick="closeProfile('profileCard')">Back</button>
+        </p>
+        <div class="social-media">
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                </svg>
+                <span class="tooltip-social">Twitter</span>
+            </a>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+                </svg>
+                <span class="tooltip-social">Instagram</span>
+            </a>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path>
+                </svg>
+                <span class="tooltip-social">Facebook</span>
+            </a>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7z"></path>
+                </svg>
+                <span class="tooltip-social">LinkedIn</span>
+            </a>
+        </div>
+    </div>
+
+    
+
+
+    <div class="popup-container" id="popup" style="display: none;">
+      <form class="form">
+          <label class="lb" for="nome">Name:</label>
+                <input name="nome" id="nome" type="text" class="infos">
+          
+                <label for="email" class="lb">E-mail:</label>
+                <input name="email" id="email" type="email" class="infos">
+          
+                <label for="data" class="lb">Date:</label>
+                <input name="data" id="data" type="date" class="infos">
+          
+                <button id="send" type="button" onclick="showConfirmation(event)">Send</button>
+                <button id="limpar" type="reset" onclick="closeBook()">Close </button>
+
+              </form>
+          </div>
+
+
+
+
+    <div class="card-client" id="profileCard2" style="display: none;">
+      <div class="user-picture">
+          <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"></path>
+          </svg>
+      </div>
+      <p class="name-client"> Aneida Freiman
+          <span>Professional Fitness Trainer
+          </span>
+          <br>
+          <span><button style="background: white;" onclick="openBook()"> Click to book a workout with Aneida </button></span>
+          <br>
+          <span><button style="background: white" onclick="location.href='chat.html'"> Click to chat with Aneida </button></span>
+          <button class="back-button" onclick="closeProfile('profileCard2')">Back</button>
+
+
+      </p>
+      <div class="social-media">
+          <a href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+              </svg>
+              <span class="tooltip-social">Twitter</span>
+          </a>
+          <a href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+              </svg>
+              <span class="tooltip-social">Instagram</span>
+          </a>
+          <a href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path>
+              </svg>
+              <span class="tooltip-social">Facebook</span>
+          </a>
+          <a href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7z"></path>
+              </svg>
+              <span class="tooltip-social">LinkedIn</span>
+          </a>
+      </div>
+  </div>
+
+
+
+
+
+
+  <div class="chat-popup" id="myForm">
+    <form action="" class="form-container">
+      <h1>Chat</h1>
+  
+      <label for="msg"><b>Message</b></label>
+      <textarea placeholder="Type message.." name="msg" required></textarea>
+  
+      <button type="submit" class="btn">Send</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+
+
+
+    <footer>
+        <div class="button-container">
+          <a href="chat.html">
+            <button class="button">
+                <svg
+                    class="icon"
+                    stroke="currentColor"
+                    fill="currentColor"
+                    stroke-width="0"
+                    viewBox="0 0 24 24"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M21 11.5a8.38 8.38 0 0 1-1.5 4.78 8.5 8.5 0 0 1-6.72 3.22A8.38 8.38 0 0 1 8 18.43L3 20l1.61-4.37A8.38 8.38 0 0 1 3 11.5a8.5 8.5 0 1 1 17 0Zm-8.5 4h.25a6.38 6.38 0 0 0 5.23-2.5 6.5 6.5 0 1 0-11.92 0A6.38 6.38 0 0 0 7.25 15.5h.25a.5.5 0 0 1 .45.28l.9 1.8a.5.5 0 0 0 .9 0l.9-1.8a.5.5 0 0 1 .45-.28Z"
+                    ></path>
+                </svg>
+            </button>
+        </a>
+        <a href="news.html">
+        <button class="button">
+            <svg
+              class="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+              height="1em"
+              width="1em"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 12h6M9 16h6M5 20a2 2 0 01-2-2V6a2 2 0 012-2h7.586a2 2 0 011.414.586l5.414 5.414a2 2 0 01.586 1.414V18a2 2 0 01-2 2H5z"
+              />
+            </svg>
+          </button></a>
+          
+            <a href="footer.html">
+                <button class="button">
+                    <svg
+                        class="icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 0 122.879 119.799"
+                        width="24"
+                        height="24"
+                        fill="currentColor"
+                    >
+                        <g>
+                            <path
+                                d="M49.988,0h0.016v0.007C63.803,0.011,76.298,5.608,85.34,14.652c9.027,9.031,14.619,21.515,14.628,35.303h0.007v0.033v0.04
+                                h-0.007c-0.005,5.557-0.917,10.905-2.594,15.892c-0.281,0.837-0.575,1.641-0.877,2.409v0.007c-1.446,3.66-3.315,7.12-5.547,10.307
+                                l29.082,26.139l0.018,0.016l0.157,0.146l0.011,0.011c1.642,1.563,2.536,3.656,2.649,5.78c0.11,2.1-0.543,4.248-1.979,5.971
+                                l-0.011,0.016l-0.175,0.203l-0.035,0.035l-0.146,0.16l-0.016,0.021c-1.565,1.642-3.654,2.534-5.78,2.646
+                                c-2.097,0.111-4.247-0.54-5.971-1.978l-0.015-0.011l-0.204-0.175l-0.029-0.024L78.761,90.865c-0.88,0.62-1.778,1.209-2.687,1.765
+                                c-1.233,0.755-2.51,1.466-3.813,2.115c-6.699,3.342-14.269,5.222-22.272,5.222v0.007h-0.016v-0.007
+                                c-13.799-0.004-26.296-5.601-35.338-14.645C5.605,76.291,0.016,63.805,0.007,50.021H0v-0.033v-0.016h0.007
+                                c0.004-13.799,5.601-26.296,14.645-35.338C23.683,5.608,36.167,0.016,49.955,0.007V0H49.988L49.988,0z
+                                M50.004,11.21v0.007h-0.016h-0.033V11.21c-10.686,0.007-20.372,4.35-27.384,11.359C15.56,29.578,11.213,39.274,11.21,49.973h0.007v0.016v0.033H11.21
+                                c0.007,10.686,4.347,20.367,11.359,27.381c7.009,7.012,16.705,11.359,27.403,11.361v-0.007h0.016h0.033v0.007
+                                c10.686-0.007,20.368-4.348,27.382-11.359c7.011-7.009,11.358-16.702,11.36-27.4h-0.006v-0.016v-0.033h0.006
+                                c-0.006-10.686-4.35-20.372-11.358-27.384C70.396,15.56,60.703,11.213,50.004,11.21L50.004,11.21z"
+                            />
+                        </g>
+                    </svg>
+                </button>
+            </a>
+
+          <a href="myProfile.html">
+        <button class="button">
+          <svg
+            class="icon"
+            stroke="currentColor"
+            fill="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            height="1em"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 2.5a5.5 5.5 0 0 1 3.096 10.047 9.005 9.005 0 0 1 5.9 8.181.75.75 0 1 1-1.499.044 7.5 7.5 0 0 0-14.993 0 .75.75 0 0 1-1.5-.045 9.005 9.005 0 0 1 5.9-8.18A5.5 5.5 0 0 1 12 2.5ZM8 8a4 4 0 1 0 8 0 4 4 0 0 0-8 0Z"
+            ></path>
+          </svg>
+        </button>
+    </a>
+      <a href="settings.html">
+        <button class="button">
+            <svg
+              class="icon"
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 1024 1024"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M512 378c-74.8 0-134 59.2-134 134s59.2 134 134 134 134-59.2 134-134-59.2-134-134-134zm284.3 58.8l47.4-31.5c10.6-7 14.4-20.6 8.9-31.7l-45-77.9c-5.6-9.7-17.4-13.9-28-10.1l-55.9 21.3c-22.3-18-47.8-32.2-75.6-41.9l-8.4-59.4c-1.6-11.2-11.3-19.4-22.5-19.4h-90c-11.2 0-20.9 8.2-22.5 19.4l-8.4 59.4c-27.8 9.7-53.3 23.9-75.6 41.9l-55.9-21.3c-10.6-4-22.5.4-28 10.1l-45 77.9c-5.6 9.7-1.8 22.9 8.9 31.7l47.4 31.5c-4.3 15.4-6.8 31.6-6.8 48s2.4 32.6 6.8 48l-47.4 31.5c-10.6 7-14.4 20.6-8.9 31.7l45 77.9c5.6 9.7 17.4 13.9 28 10.1l55.9-21.3c22.3 18 47.8 32.2 75.6 41.9l8.4 59.4c1.6 11.2 11.3 19.4 22.5 19.4h90c11.2 0 20.9-8.2 22.5-19.4l8.4-59.4c27.8-9.7 53.3-23.9 75.6-41.9l55.9 21.3c10.6 4 22.5-.4 28-10.1l45-77.9c5.6-9.7 1.8-22.9-8.9-31.7l-47.4-31.5c4.3-15.4 6.8-31.6 6.8-48s-2.4-32.6-6.8-48zm-284.3 233c-91.6 0-166-74.4-166-166s74.4-166 166-166 166 74.4 166 166-74.4 166-166 166z"
+              ></path>
+            </svg>
+          </button></a>
+          
+      </div></footer>
+
+
+      <div class="card" style="display: none;" id="conf">
+        <div class="header">
+          <div class="content">
+            <span class="title" style="color: #573b8a;">Workout Booked !</span>
+            <p class="message">
+              Payment confirmation sent to email.
+            </p>
+          </div>
+          <div class="actions">
+            <button type="button" class="desactivate" onclick="back()" style="background-color: darkgreen; color: white;">Okay</button>
+          </div>
+        </div>
+      </div>
+<script>
+
+  function back(){
+    document.getElementById('conf').style.display = 'none';
+    document.getElementById('popup').style.display = 'none';
+    document.getElementById('myUL').style.display = 'block';
+
+  }
+
+  function showConfirmation(event) {
+event.preventDefault();
+
+document.getElementById('popup').style.display = 'none';
+document.getElementById('conf').style.display = 'block';
+
+}
+
+  
+  
+function selectNenko() {
+  const checkbox = document.getElementById('availabilityCheckbox');
+  
+  if (checkbox.checked) {
+      document.getElementById('myUL').style.display = 'none';
+      document.getElementById('profileCard').style.display = 'block';
+      document.getElementById('profileCard2').style.display = 'none';
+  } else if(document.getElementById('profilecard2').style.display='none'){
+      document.getElementById('myUL').style.display = 'none';
+      document.getElementById('profileCard').style.display = 'none';
+  } else{
+    document.getElementById('myUL').style.display = 'block';
+    document.getElementById('profileCard').style.display = 'none';
+  }
+}
+
+
+
+  function selectTraining() {
+      document.getElementById('myUL').style.display = 'none';
+
+      document.getElementById('profileCard2').style.display = 'block';
+  }
+  function openForm() {
+document.getElementById("myForm").style.display = "block";
+}
+
+function closeForm() {
+document.getElementById("myForm").style.display = "none";
+}
+
+function openBook() {
+document.getElementById("popup").style.display = "block";
+document.getElementById("profileCard2").style.display = "none";
+}
+
+function closeBook(){
+document.getElementById("popup").style.display = "none";
+document.getElementById("profileCard2").style.display = "block";
+
+}
+
+function closeProfile(profileId) {
+document.getElementById(profileId).style.display = "none";
+
+const menu = document.getElementById("myUL");
+if (menu) {
+  menu.style.display = "block";
+}
+}
+
+function startWorkout() {
+        alert('Workout starting now.\nYour microphone will be automatically on');
+        window.location.href = 'workoutPage.html'; 
+}
+
+
+
+</script>
+    
+</body>
+</html>

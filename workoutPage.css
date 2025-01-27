@@ -1,0 +1,194 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  width: 100%;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #333;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  gap: 10px;
+}
+
+.footer button {
+  background: #555;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.footer button:hover {
+  background: #ff3d3d;
+}
+
+.rate-section {
+  display: none;
+  margin: 20px 10px;
+  text-align: center;
+}
+
+.rate-section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.rate-section p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.3rem;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.rating label {
+  cursor: pointer;
+}
+
+.rating svg {
+  width: 24px;
+  height: 24px;
+  fill: transparent;
+  stroke: #666;
+  transition: stroke 0.2s, fill 0.5s;
+}
+
+.rating label:hover svg,
+.rating input:checked ~ label svg {
+  fill: #ffc73a;
+  stroke: #ffc73a;
+}
+
+.rate-section button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#end, #mic, #camera{
+  width: 45px;
+  height: 45px;
+}
+.rate-section button:hover {
+  background: #0056b3;
+}
+
+#myVideo {
+  width: 100%;
+  height: 100%;
+  margin-top: 1%;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.container .heart-rate {
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+
+#camera-feed {
+  position: fixed;
+  bottom: 70px;
+  left: 10px;
+  width: 80px;
+  height: 120px;
+  border-radius: 10px;
+  border: 2px solid white;
+  background-color: black;
+  z-index: 10;
+}
+
+@keyframes heartRateIn {
+  0%, 50%, 100% {
+    width: 0;
+  }
+}
+
+@keyframes heartRateOut {
+  0%, 30%, 100% {
+    left: -120%;
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .footer button {
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+  }
+
+  .rate-section h2 {
+    font-size: 18px;
+  }
+
+  .rate-section p {
+    font-size: 12px;
+  }
+
+  .rate-section button {
+    font-size: 12px;
+  }
+
+  #camera-feed {
+    width: 60px;
+    height: 90px;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .footer button {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 10px;
+  }
+
+  .rating svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+.lol{
+  font-size: 10em;
+}

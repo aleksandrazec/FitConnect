@@ -1,0 +1,82 @@
+.connectBtn {
+    width: 120px;
+    height: 40px;
+    border: none;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: white;
+    font-weight: 600;
+    background: linear-gradient( to right,#8be3fc,#576bff);
+    box-shadow: 0 20px 30px -7px rgba(97, 118, 238, 0.5);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .connectBtn:hover {
+    box-shadow: none;
+    transform: translate(0px, 2.2px);
+  }
+  
+  .connectBtn:active {
+    transform: scale(0.96) translate(0px, 3.2px);
+  }
+
+  @keyframes load-loop {
+    0% {
+      background-position: 100%;
+    }
+  
+    40% {
+      background-position: 50%;
+    }
+  
+    50% {
+      background-position: 50%;
+    }
+  
+    90% {
+      background-position: 0%;
+    }
+  
+    100% {
+      background-position: 0%;
+    }
+  }
+  
+  .loader {
+    position: relative;
+    font-family: sans-serif;
+    display: flex;
+    height: auto;
+    width: auto;
+    letter-spacing: 3px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 1.45em;
+    color: transparent;
+    background: linear-gradient(to right,#fff 33.3%,#008cdd 33.3%, #008cdd 66.6%, #fff 66.6%) no-repeat;
+    background-size: 300%;
+    background-position: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: infinite 1.4s load-loop ease;
+  }
+  
+  .loader::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: block;
+    background: linear-gradient(to right,#008cdd 33.3%, transparent 33.3% , transparent 66.6%, #008cdd 66.6%) no-repeat;
+    background-size: 300%;
+    background-position: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    animation: 1.4s load-loop ease;
+  }

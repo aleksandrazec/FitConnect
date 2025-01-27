@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rate Trainer After Call</title>
+  <link rel="stylesheet" href="workoutPage.css">
+  <link rel="stylesheet" href="body.css">
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100%;
+      background-color: #f4f4f4;
+    }
+
+    video, audio {
+      max-width: 100%;
+    }
+    footer {
+      width: 100%;
+      background: #1a1a1a;
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      z-index: 1000;
+    }
+
+    footer button {
+      background: gray;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+
+    footer button#end-call-btn {
+      background: red;
+    }
+
+    .rate-section {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+      padding: 10px;
+      width: 90%;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .rate-section h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .rate-section p {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .rating {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      gap: 0.3rem;
+      margin-bottom: 20px;
+    }
+
+    .rating input {
+      appearance: none;
+    }
+
+    .rating label {
+      cursor: pointer;
+    }
+
+    .rating svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: transparent;
+      stroke: #666;
+      transition: stroke 0.2s, fill 0.5s;
+    }
+
+    .rating label:hover svg,
+    .rating input:checked ~ label svg {
+      fill: #302b63;
+      stroke: #302b63;
+    }
+
+    .rate-section button {
+      background: #302b63;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .rate-section button:hover {
+      background: #24243e;
+    }
+
+    #myVideo {
+      position: relative; 
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #ccc;
+    }
+
+    #camera-feed {
+      position: fixed;
+      bottom: 5%;
+      left: 5%;
+      width: 15%;
+      height: 30%;
+      border-radius: 10px;
+      border: 2px solid white;
+      background-color: black;
+      z-index: 10;
+    }
+
+    #header {
+      margin-top: 20%;
+      display: none;
+      justify-content: space-between;
+      position: relative;
+      width: 100%;
+    }
+
+    #heart, #fire {
+      position: relative;
+      display: inline-block;
+    }
+
+    #heart .number, #fire .number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .header {
+      width: 20%;
+    }
+
+  </style>
+</head>
+<body>
+ 
+  <section>
+    <div id="header">
+      <div id="heart">
+        <p class="lol" style="display: inline;">BPM:</p>
+        <p id="bpm" class="lol" style="display: inline;">70</p>
+      </div>
+      <div id="fire">
+        <p class="lol" style="display: inline;">Kcal:</p>
+        <p id="kcal" class="lol" style="display: inline;">0</p>
+      </div>
+    </div>
+
+    <section>
+    <video id="myVideo" muted autoplay playsinline>
+      <source src="ova.mp4" type="video/mp4">
+      <source src="ova.webm" type="video/webm">
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <audio id="myAudio" autoplay>
+    <source src="ova.mp3" type="audio/mp3">
+    Your browser does not support the audio tag.
+  </audio>
+
+  <footer>
+    <button onclick="endCall()" id="end-call-btn">
+        <img id="end" src="circle.png">
+    </button>
+    <button onclick="toggleMute()" id="muteButton">
+        <img id="mic" src="micoff.png">
+    </button>
+    <button onclick="toggleCamera()" id="cameraButton">
+        <img src="turn-video-off-button.png" id="camera">
+    </button>
+    <button onclick="openMoreOptions()" id="moreButton"  style="color: #000; font-weight: bolder;">
+        ...
+    </button>
+  </footer>
+
+  <div class="rate-section" id="rate-section">
+    <h2>Rate Your Trainer</h2>
+    <p>Please let us know your feedback.</p>
+    <div class="rating">
+      <input type="radio" id="star-5" name="star-radio" value="5">
+      <label for="star-5">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+        </svg>
+      </label>
+      <input type="radio" id="star-4" name="star-radio" value="4">
+      <label for="star-4">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+        </svg>
+      </label>
+      <input type="radio" id="star-3" name="star-radio" value="3">
+      <label for="star-3">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+        </svg>
+      </label>
+      <input type="radio" id="star-2" name="star-radio" value="2">
+      <label for="star-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+        </svg>
+      </label>
+      <input type="radio" id="star-1" name="star-radio" value="1">
+      <label for="star-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
+        </svg>
+      </label>
+    </div>
+    <button onclick="submitFeedback()">Submit</button>
+  </div>
+
+  <script>
+    let isMuted = true;
+    let isCameraOff = true;
+
+    const video = document.getElementById("myVideo");
+    const audio = document.getElementById("myAudio");
+    const micImage = document.getElementById("mic");
+    const cameraImage = document.getElementById("camera");
+    const rateSection = document.getElementById("rate-section");
+
+    video.addEventListener('play', () => {
+        audio.play();
+    });
+
+    video.addEventListener('pause', () => {
+        audio.pause();
+    });
+    video.addEventListener('ended', () => {
+        endCall();
+    });
+
+    function updateStats() {
+  let bpm = document.getElementById('bpm');
+  let kcal = document.getElementById('kcal');
+  
+
+  setInterval(() => {
+    kcal.textContent = parseInt(kcal.textContent) + 1;
+  }, 2000);
+  
+  setInterval(() => {
+    bpm.textContent = parseInt(bpm.textContent) - 1;
+    setTimeout(() => {
+      bpm.textContent = parseInt(bpm.textContent) + 2;
+    }, 5000);
+  }, 10000);
+}
+
+
+    var boolean = localStorage.getItem("watch");
+    if(boolean){
+      boolean = JSON.parse(boolean)
+      document.getElementById('header').style.display="flex";
+      updateStats();
+    }
+
+
+
+    video.addEventListener('timeupdate', () => {
+        if (Math.abs(video.currentTime - audio.currentTime) > 0.3) {
+            audio.currentTime = video.currentTime;
+        }
+    });
+    function endCall() {
+      video.pause;
+      rateSection.style.display = "block";
+      video.style.display = "none";
+      stopCamera();
+      document.querySelector("footer").style.display = "none";
+      document.getElementById("header").style.display = "none";
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      micImage.src = isMuted ? "micoff.png" : "mic.png";
+    }
+
+    function toggleCamera() {
+      isCameraOff = !isCameraOff;
+      cameraImage.src = isCameraOff ? "turn-video-off-button.png" : "videocam.png";
+      if (isCameraOff) stopCamera();
+      else startCamera();
+    }
+
+    async function startCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const cameraFeed = document.getElementById("camera-feed") || document.createElement("video");
+        cameraFeed.id = "camera-feed";
+        cameraFeed.autoplay = true;
+        cameraFeed.muted = true;
+        cameraFeed.srcObject = stream;
+        document.body.appendChild(cameraFeed);
+      } catch (err) {
+        console.error("Camera error: ", err);
+      }
+    }
+
+    function stopCamera() {
+      const cameraFeed = document.getElementById("camera-feed");
+      if (cameraFeed) {
+        const stream = cameraFeed.srcObject;
+        stream && stream.getTracks().forEach((track) => track.stop());
+        cameraFeed.remove();
+      }
+    }
+
+    function submitFeedback() {
+  const toast = document.createElement("div");
+  toast.textContent = "Thank you for your feedback!";
+  toast.style.position = "fixed";
+  toast.style.bottom = "20px";
+  toast.style.left = "50%";
+  toast.style.transform = "translateX(-50%)";
+  toast.style.backgroundColor = "#333";
+  toast.style.color = "#fff";
+  toast.style.padding = "10px 20px";
+  toast.style.borderRadius = "5px";
+  toast.style.boxShadow = "0 2px 5px rgba(0, 0, 0, 0.2)";
+  toast.style.fontSize = "14px";
+  toast.style.zIndex = "1000";
+  document.body.appendChild(toast);
+  document.getElementById('header').display="none";
+  setTimeout(() => {
+    localStorage.setItem("workout",JSON.stringify(1));
+    toast.style.transition = "opacity 0.5s";
+    toast.style.opacity = "0";
+    location.href = "footer.html";
+    setTimeout(() => document.body.removeChild(toast), 500);
+  }, 2000);
+}
+
+
+
+
+  </script>
+</body>
+</html>

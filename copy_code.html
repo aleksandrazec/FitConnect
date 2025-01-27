@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Your Code</title>
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="body.css"> 
+    <script>
+        function copyCode() {
+            const code = document.getElementById('code');
+            navigator.clipboard.writeText(code.textContent)
+                .then(() => {
+                    alert('Code copied to clipboard!');
+                })
+                .catch(err => {
+                    alert('Failed to copy code: ' + err);
+                });
+        }
+    </script>
+</head>
+<body>
+    <div class="input">
+        <p>Your code: <span id="code">J4LMMTUDZ0</span></p>
+        <button class="value" onclick="copyCode()">Copy Code</button>
+        <button class="value" onclick="window.location.href='settings.html'">Go Back to Settings</button>
+    </div>
+</body>
+</html>

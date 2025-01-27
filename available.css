@@ -1,0 +1,142 @@
+.button {
+    position: relative;
+    align-items: center;
+    border: none;
+    background-color: #0000;
+    font-size: 0.75em;
+  }
+  .button input {
+    display: none;
+  }
+  .button label {
+    position: absolute;
+    inset: 0;
+    display: none;
+    cursor: pointer;
+  }
+  .button #available:checked ~ [for="newly"] {
+    display: block;
+  }
+  .button #newly:checked ~ [for="limited"] {
+    display: block;
+  }
+  .button #limited:checked ~ [for="available"] {
+    display: block;
+  }
+  .button .container {
+    display: flex;
+    gap: 1em;
+    padding: 2em;
+    border-radius: 2em;
+    transition: 0.5s all;
+    background: #f0faff;
+  }
+  .button .text {
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: 0.5s all;
+    pointer-events: none;
+    width: 8.5em;
+    font-size: 1.5em;
+  }
+  .button .text div {
+    transition:
+      0.5s all,
+      0.5s translate;
+    position: absolute;
+    text-wrap: nowrap;
+    translate: 0 -1.25em;
+    opacity: 0;
+  }
+  .button #newly:checked ~ .container .text-na {
+    opacity: 1;
+    translate: 0 0em;
+  }
+  .button #newly:checked ~ .container .text-wa {
+    translate: 0 1.25em;
+  }
+  .button #newly:checked ~ .container .text-l {
+    transition: 0s all;
+  }
+  .button #available:checked ~ .container {
+    background: #e8ffee;
+  }
+  .button #available:checked ~ .container .text-wa {
+    opacity: 1;
+    translate: 0 0em;
+  }
+  .button #available:checked ~ .container .text-l {
+    translate: 0 1.25em;
+  }
+  .button #available:checked ~ .container .text-na {
+    transition: 0s all;
+  }
+  .button #available:checked ~ .container svg .bg {
+    --a: 5 0;
+    stroke-dasharray: var(--a) var(--a) var(--a) var(--a) var(--a) var(--a)
+      var(--a) var(--a) var(--a) var(--a) var(--a) var(--a) 3.75 2.5 0 5 3.75 0
+      var(--a);
+    stroke-dashoffset: 7.5;
+    stroke: #c4eed0;
+  }
+  .button #available:checked ~ .container svg .fg {
+    stroke: #1ea446;
+  }
+  .button #limited:checked ~ .container {
+    background: #fff5e6;
+  }
+  .button #limited:checked ~ .container .text-l {
+    opacity: 1;
+    translate: 0 0em;
+  }
+  .button #limited:checked ~ .container .text-na {
+    translate: 0 1.25em;
+  }
+  .button #limited:checked ~ .container .text-wa {
+    transition: 0s all;
+  }
+  .button #limited:checked ~ .container svg .bg {
+    --a: 5 0;
+    stroke-dasharray: var(--a) var(--a) var(--a) var(--a) var(--a) var(--a)
+      var(--a) var(--a) var(--a) var(--a) var(--a) var(--a) 3.75 2.5 0 5 3.75 0
+      var(--a);
+    stroke-dashoffset: 7.5;
+    stroke: #c6c6c6;
+  }
+  .button #limited:checked ~ .container svg .fg {
+    stroke: #f09409;
+  }
+  .button #limited:checked ~ .container svg .fg1 {
+    stroke-dasharray: 0 30 20 80;
+    stroke-dashoffset: 20;
+  }
+  .button #limited:checked ~ .container svg .fg2 {
+    stroke-dasharray: 0 0 3 3 3 0;
+  }
+  .button svg {
+    overflow: visible;
+    height: 2em;
+  }
+  .button svg path {
+    stroke-width: 6;
+    fill: #0000;
+    transition: 0.5s all;
+  }
+  .button svg .bg {
+    stroke: #a8c7fa;
+    stroke-dasharray: 2.5;
+    stroke-dashoffset: 6.25;
+  }
+  .button svg .fg {
+    stroke: #1b6ef3;
+  }
+  .button svg .fg1 {
+    stroke-linecap: square;
+    stroke-dasharray: 0 20 30 80;
+    stroke-dashoffset: 20;
+  }
+  .button svg .fg2 {
+    stroke-dasharray: 0 3;
+  }
+  
