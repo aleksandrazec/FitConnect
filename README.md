@@ -17,6 +17,7 @@
 
 ## Operating instructions: 
 - Link to a video on how to use the app: 
+https://youtu.be/xYQmYo5b5pc?si=_cv9S9QUvUFqwc5i
 
 ## Limitations:
 - You don't actually book a workout session because we don't have a database since it is a prototype
