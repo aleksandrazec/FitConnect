@@ -23,7 +23,7 @@
 - You cannot send messages.
 - You cannot recieve messages.
 - Login and signup are hardcoded without a database as well.
-- Application as a trainer is hardcoded.
+- Application as a trainer is unavailable.
 
 
 
