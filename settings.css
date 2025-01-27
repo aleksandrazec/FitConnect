@@ -103,13 +103,13 @@ body{
 }
 
 
-/* Dark mode styles */
+
 body.dark-mode {
   background-color: #121212;
   color: #ffffff;
 }
 
-/* Adjust button appearance in dark mode */
+
 body.dark-mode .value path {
   fill: #ffffff;
 }
