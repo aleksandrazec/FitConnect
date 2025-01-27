@@ -1,5 +1,3 @@
-# FitConnect
-Human-computer interaction final project
 # Human Computer Interaction Project
 
 ## Fit Connect high-fidelity mobile app designed in HTML, CSS and JavaScript on exercising online from anywhere and anytime. 
