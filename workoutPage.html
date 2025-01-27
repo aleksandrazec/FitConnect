@@ -35,7 +35,7 @@
       padding: 10px 0;
       position: fixed;
       bottom: 0;
-      left: 5%;
+      left: 3%;
       z-index: 1000;
     }
 
@@ -137,7 +137,7 @@
       bottom: 5%;
       left: 5%;
       width: 15%;
-      height: 30%;
+      height: auto;
       border-radius: 10px;
       border: 2px solid white;
       background-color: black;
@@ -170,7 +170,29 @@
     .header {
       width: 20%;
     }
+    @media (max-width: 768px) {
+      footer {
+        flex-wrap: wrap;
+        gap: 5px;
+      }
 
+      footer button {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+
+      #myVideo {
+        max-width: 80%;
+        height: auto;
+        margin: auto;
+        left: 5%;
+      }
+
+      #camera-feed {
+        width: 30%;
+      }
+    }
   </style>
 </head>
 <body>
